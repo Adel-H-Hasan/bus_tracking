@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BusTrack | Driver</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="brand-mark">🚌</span> BusTrack</div>
+    <div class="topbar-right">
+      <div class="who"><strong id="who-name">Driver</strong><span>driver</span></div>
+      <button class="btn btn-ghost btn-sm" id="logout">Log out</button>
+    </div>
+  </header>
+
+  <main class="layout">
+    <aside class="side">
+      <section class="card" id="no-bus" hidden>
+        <h3>No bus assigned yet</h3>
+        <p class="card-sub" style="margin:0">Ask the administrator to assign you a bus and a route.</p>
+      </section>
+
+      <section class="card" id="trip-card" hidden>
+        <h3 id="bus-title">My bus</h3>
+        <div class="row" style="margin-bottom:12px">
+          <span class="badge" id="route-badge">No route</span>
+          <span class="badge badge-muted" id="trip-badge">Trip not started</span>
+        </div>
+        <div class="stat-row" style="margin-bottom:14px">
+          <div class="stat"><b id="onboard">0</b><span>On board</span></div>
+          <div class="stat"><b id="capacity">25</b><span>Capacity</span></div>
+          <div class="stat"><b id="seats">25</b><span>Seats left</span></div>
+        </div>
+        <div id="full-banner" class="banner banner-full" hidden style="margin-bottom:12px">
+          Bus is full. Students now see "bus full".
+        </div>
+        <button class="btn btn-block" id="trip-btn">Start trip</button>
+      </section>
+
+      <section class="card" id="alerts-card" hidden>
+        <h3>Students waiting on my route</h3>
+        <ul class="list" id="alerts"></ul>
+      </section>
+
+      <section class="card" id="board-card" hidden>
+        <h3>Passengers on board</h3>
+        <form id="board-form" class="row" style="margin-bottom:12px">
+          <input id="board-name" type="text" placeholder="Student name or ID" style="border:1.5px solid var(--line);border-radius:10px;padding:10px 12px">
+          <button class="btn" type="submit">Add</button>
+        </form>
+        <ul class="list" id="passengers"></ul>
+        <button class="btn btn-ghost btn-sm" id="clear-passengers" style="margin-top:12px">Clear all passengers</button>
+      </section>
+
+      <section class="card" id="nearby-card" hidden>
+        <h3>Nearest buses</h3>
+        <ul class="list" id="nearby"></ul>
+      </section>
+
+      <section class="card" id="schedule-card" hidden>
+        <h3>My schedule</h3>
+        <ul class="list" id="schedule"></ul>
+      </section>
+    </aside>
+
+    <section class="map-wrap"><div id="map"></div></section>
+  </main>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script type="module" src="js/driver.js"></script>
+</body>
+</html>

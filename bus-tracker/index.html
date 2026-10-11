@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BusTrack | Sign in</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="auth-page">
+    <section class="auth-hero">
+      <div class="brand"><span class="brand-mark">🚌</span> BusTrack</div>
+      <h1>Know exactly where your bus is.</h1>
+      <p>Live tracking for students, drivers and administrators on one simple platform.</p>
+      <ul class="hero-points">
+        <li>📍 Watch the bus move in real time</li>
+        <li>⏱️ See how long until it reaches you</li>
+        <li>✋ Tell the driver you are waiting</li>
+        <li>🧭 Predefined routes managed by the admin</li>
+      </ul>
+    </section>
+    <section class="auth-panel">
+      <div class="auth-card">
+        <h2 id="title">Welcome back</h2>
+        <p class="card-sub" id="subtitle">Sign in to open your dashboard.</p>
+        <div class="seg">
+          <button type="button" id="tab-in" class="active">Sign in</button>
+          <button type="button" id="tab-up">Create account</button>
+        </div>
+        <div id="error" class="form-error" hidden></div>
+        <form id="form">
+          <div id="signup-fields" hidden>
+            <div class="field">
+              <label for="name">Full name</label>
+              <input id="name" type="text" autocomplete="name">
+            </div>
+            <div class="field">
+              <label for="phone">Phone number</label>
+              <input id="phone" type="tel" autocomplete="tel">
+            </div>
+            <div class="field">
+              <label for="role">I am a</label>
+              <select id="role">
+                <option value="student">Student</option>
+                <option value="driver">Driver</option>
+              </select>
+            </div>
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" type="email" required autocomplete="email">
+          </div>
+          <div class="field">
+            <label for="password">Password</label>
+            <input id="password" type="password" required minlength="6" autocomplete="current-password">
+          </div>
+          <button class="btn btn-block" id="submit" type="submit">Sign in</button>
+        </form>
+        <p class="hint">Administrator accounts are created by the system owner in the Firebase console.</p>
+      </div>
+    </section>
+  </div>
+  <script type="module" src="js/login.js"></script>
+</body>
+</html>

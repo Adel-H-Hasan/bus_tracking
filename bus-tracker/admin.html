@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BusTrack | Admin</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="brand-mark">🚌</span> BusTrack Admin</div>
+    <div class="topbar-right">
+      <div class="who"><strong id="who-name">Admin</strong><span>administrator</span></div>
+      <button class="btn btn-ghost btn-sm" id="logout">Log out</button>
+    </div>
+  </header>
+
+  <main class="layout" style="grid-template-columns: 460px 1fr">
+    <aside class="side">
+      <div class="tabs" id="tabs">
+        <button class="tab active" data-tab="live">Live</button>
+        <button class="tab" data-tab="routes">Routes</button>
+        <button class="tab" data-tab="buses">Buses</button>
+        <button class="tab" data-tab="schedule">Schedule</button>
+        <button class="tab" data-tab="comments">Comments</button>
+      </div>
+
+      <section class="panel" id="panel-live">
+        <div class="card" style="margin-bottom:14px">
+          <h3>Fleet overview</h3>
+          <div class="stat-row">
+            <div class="stat"><b id="n-active">0</b><span>Active</span></div>
+            <div class="stat"><b id="n-waiting">0</b><span>Waiting</span></div>
+            <div class="stat"><b id="n-full">0</b><span>Full</span></div>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Buses right now</h3>
+          <ul class="list" id="live-list"></ul>
+        </div>
+      </section>
+
+      <section class="panel" id="panel-routes" hidden>
+        <div class="card" style="margin-bottom:14px">
+          <h3>Create a route</h3>
+          <p class="card-sub">Press "Add stops", then click the map in order. Name each stop when asked.</p>
+          <div class="field">
+            <label for="route-name">Route name</label>
+            <input id="route-name" type="text" placeholder="e.g. Tabarbour">
+          </div>
+          <div class="row" style="margin-bottom:12px">
+            <button class="btn btn-ghost" id="draw-toggle" type="button">Add stops</button>
+            <button class="btn btn-ghost" id="undo-stop" type="button">Undo stop</button>
+          </div>
+          <ul class="list" id="draft-stops" style="margin-bottom:12px"></ul>
+          <button class="btn btn-block" id="save-route" type="button">Save route</button>
+        </div>
+        <div class="card">
+          <h3>Saved routes</h3>
+          <ul class="list" id="route-list"></ul>
+        </div>
+      </section>
+
+      <section class="panel" id="panel-buses" hidden>
+        <div class="card" style="margin-bottom:14px">
+          <h3>Add a bus</h3>
+          <form id="bus-form">
+            <div class="field">
+              <label for="bus-name">Bus name or plate</label>
+              <input id="bus-name" type="text" required placeholder="Bus 1">
+            </div>
+            <div class="field">
+              <label for="bus-cap">Capacity</label>
+              <input id="bus-cap" type="number" min="1" max="100" value="25" required>
+            </div>
+            <button class="btn btn-block" type="submit">Add bus</button>
+          </form>
+        </div>
+        <div class="card">
+          <h3>Assign route and driver</h3>
+          <div style="overflow-x:auto">
+            <table class="table">
+              <thead><tr><th>Bus</th><th>Route</th><th>Driver</th><th></th></tr></thead>
+              <tbody id="bus-table"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel" id="panel-schedule" hidden>
+        <div class="card" style="margin-bottom:14px">
+          <h3>Add a trip</h3>
+          <form id="schedule-form">
+            <div class="field">
+              <label for="sch-bus">Bus</label>
+              <select id="sch-bus" required></select>
+            </div>
+            <div class="field">
+              <label for="sch-time">Departure time</label>
+              <input id="sch-time" type="time" required>
+            </div>
+            <div class="field">
+              <label for="sch-label">Note (optional)</label>
+              <input id="sch-label" type="text" placeholder="Morning pickup">
+            </div>
+            <button class="btn btn-block" type="submit">Add to schedule</button>
+          </form>
+          <p class="hint">The trip uses the route and driver currently assigned to the bus.</p>
+        </div>
+        <div class="card">
+          <h3>Trip schedule</h3>
+          <ul class="list" id="schedule-list"></ul>
+        </div>
+      </section>
+
+      <section class="panel" id="panel-comments" hidden>
+        <div class="card">
+          <h3>Student comments</h3>
+          <ul class="list" id="comment-list"></ul>
+        </div>
+      </section>
+    </aside>
+
+    <section class="map-wrap"><div id="map"></div></section>
+  </main>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script type="module" src="js/admin.js"></script>
+</body>
+</html>

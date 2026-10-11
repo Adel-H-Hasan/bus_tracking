@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BusTrack | Student</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="brand-mark">🚌</span> BusTrack</div>
+    <div class="topbar-right">
+      <div class="who"><strong id="who-name">Student</strong><span>student</span></div>
+      <button class="btn btn-ghost btn-sm" id="logout">Log out</button>
+    </div>
+  </header>
+
+  <main class="layout">
+    <aside class="side">
+      <section class="card">
+        <h3>Choose your bus</h3>
+        <div class="field" style="margin-bottom:0">
+          <select id="bus-select"></select>
+        </div>
+      </section>
+
+      <section class="card" id="status-card">
+        <h3>Bus status</h3>
+        <div id="full-banner" class="banner banner-full" hidden style="margin-bottom:12px">
+          This bus is full. Please do not wait for it.
+        </div>
+        <div id="eta-block">
+          <div class="card-sub" id="eta-label">Time until the bus reaches you</div>
+          <div class="eta-big" id="eta">--</div>
+          <div class="card-sub" id="eta-note" style="margin:6px 0 14px"></div>
+        </div>
+        <div class="stat-row">
+          <div class="stat"><b id="seats-left">--</b><span>Seats left</span></div>
+          <div class="stat"><b id="distance">--</b><span>Km away</span></div>
+          <div class="stat"><b id="updated">--</b><span>Updated</span></div>
+        </div>
+        <div style="margin-top:12px" class="row">
+          <span class="badge" id="route-badge">No route</span>
+          <span class="badge badge-muted" id="driver-badge">No driver</span>
+        </div>
+      </section>
+
+      <section class="card">
+        <h3>Waiting for this bus?</h3>
+        <p class="card-sub">Press the button so the driver sees you on the map.</p>
+        <div id="wait-banner" class="banner banner-wait" hidden style="margin-bottom:12px">
+          The driver has been notified that you are waiting.
+        </div>
+        <button class="btn btn-accent btn-block" id="wait-btn">I'm waiting for the bus</button>
+      </section>
+
+      <section class="card">
+        <h3>Send a comment</h3>
+        <p class="card-sub">Your message goes straight to the admin.</p>
+        <form id="comment-form">
+          <div class="field">
+            <textarea id="comment-text" rows="3" maxlength="400" placeholder="Tell us about delays, safety or suggestions"></textarea>
+          </div>
+          <button class="btn btn-block" type="submit">Send comment</button>
+        </form>
+      </section>
+    </aside>
+
+    <section class="map-wrap"><div id="map"></div></section>
+  </main>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script type="module" src="js/student.js"></script>
+</body>
+</html>
